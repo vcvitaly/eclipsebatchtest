@@ -37,7 +37,7 @@ public class ProjectAsset {
     @SequenceGenerator(
             name = "project_asset_id_seq",
             sequenceName = "project_asset_id_seq",
-            allocationSize = 1
+            allocationSize = 300
     )
     @EqualsAndHashCode.Exclude
     @Column(name = "id", nullable = false)
