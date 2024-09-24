@@ -40,6 +40,7 @@ dependencies {
 
 	implementation "org.eclipse.persistence:org.eclipse.persistence.jpa:4.0.2"
 	implementation "org.postgresql:postgresql:42.7.2"
+	implementation "org.flywaydb:flyway-core:9.19.1"
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
