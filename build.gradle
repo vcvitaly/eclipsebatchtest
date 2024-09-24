@@ -24,13 +24,18 @@ repositories {
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation('org.springframework.boot:spring-boot-starter-data-jpa') {
+		exclude group: "org.hibernate"
+		exclude group: "org.hibernate.orm"
+	}
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+
 
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	annotationProcessor 'org.projectlombok:lombok'
 
+	implementation "org.eclipse.persistence:org.eclipse.persistence.jpa:4.0.2"
 	implementation "org.postgresql:postgresql:42.7.2"
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'

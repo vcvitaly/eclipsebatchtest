@@ -2,7 +2,7 @@ spring:
   application:
     name: eclipsebatchtest
   datasource:
-    url: jdbc:postgresql://${SER_EAPM_STRATEGY_SERVICE_DB_HOST:localhost}:${SER_EAPM_STRATEGY_SERVICE_DB_PORT:5432}/${SER_EAPM_STRATEGY_SERVICE_DB_NAME:strategy}?currentShema=${SER_EAPM_STRATEGY_SERVICE_DB_SCHEMA:public}
+    url: jdbc:postgresql://localhost:5432/test?currentShema=public
     username: ${SER_EAPM_STRATEGY_SERVICE_DB_USER:postgres}
     password: ${SER_EAPM_STRATEGY_SERVICE_DB_PASSW:postgres}
     driverClassName: org.postgresql.Driver
