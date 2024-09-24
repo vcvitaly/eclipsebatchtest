@@ -10,7 +10,9 @@ spring:
     properties:
       eclipselink:
         ddl-generation: none
-        show-sql: true
+        jdbc:
+          batch-writing: jdbc
+#    show-sql: true
   sql:
     init:
       platform: postgres
@@ -18,3 +20,4 @@ spring:
 logging:
   level:
     io.github.vcvitaly.eclipsebatchtest: DEBUG
+    org.eclipse: DEBUG

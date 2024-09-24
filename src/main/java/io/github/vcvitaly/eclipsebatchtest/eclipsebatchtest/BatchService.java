@@ -20,7 +20,7 @@ public class BatchService {
     @Transactional
     public void save(int numBatches) {
         for (int i = 0; i < numBatches; i++) {
-            final List<ProjectAsset> assets = IntStream.rangeClosed(1, 2_000)
+            final List<ProjectAsset> assets = IntStream.rangeClosed(1, 3_000)
                     .mapToObj(j -> ProjectAsset.builder().assetGuid(getGuid("a")).projectGuid("pr1").build())
                     .toList();
             repo.saveAll(assets);

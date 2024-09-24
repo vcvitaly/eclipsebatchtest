@@ -1,0 +1,72 @@
+<configuration>
+    <property name = "fileAppenderExists" value = "false"/>
+    <!--Enable or disable print logs into file. SER_EAPM_FILE_LOGGING_ENABLED=false|true-->
+    <if condition='isDefined("SER_EAPM_FILE_LOGGING_ENABLED")'>
+        <then>
+            <property name="logIntoFile" value = '${SER_EAPM_FILE_LOGGING_ENABLED}'/>
+        </then>
+        <else>
+            <property name="logIntoFile" value = "false"/>
+        </else>
+    </if>
+    <!--File path + name.-->
+    <if condition='isDefined("SER_EAPM_FILE_LOGGING_PATH")'>
+        <then>
+            <property name="logFile" value = '${SER_EAPM_FILE_LOGGING_PATH}'/>
+        </then>
+        <else>
+            <property name="logFile" value = "logfile.log"/>
+        </else>
+    </if>
+    <!--SER_EAPM_FILE_LOGGING_APPEND=false|true. If false each time file will be cleared.-->
+    <if condition='isDefined("SER_EAPM_FILE_LOGGING_APPEND")'>
+        <then>
+            <property name="appendFile" value = '${SER_EAPM_FILE_LOGGING_APPEND}'/>
+        </then>
+        <else>
+            <property name="appendFile" value = "false"/>
+        </else>
+    </if>
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg %kvp{SINGLE}%n</pattern>
+        </encoder>
+    </appender>
+
+    <if condition='property("logIntoFile").equals("true")'>
+        <then>
+            <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+                <file>${logFile}</file>
+                <append>${appendFile}</append>
+                <encoder>
+                    <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg %kvp{SINGLE}%n</pattern>
+                </encoder>
+            </appender>
+            <property name="fileAppenderExists" value = "true"/>
+        </then>
+    </if>
+
+    <if condition='property("fileAppenderExists").equals("true")'>
+        <then>
+            <root level="INFO">
+                <appender-ref ref="FILE" />
+                <appender-ref ref="CONSOLE" />
+            </root>
+        </then>
+        <else>
+            <root level="INFO">
+                <appender-ref ref="CONSOLE" />
+            </root>
+        </else>
+    </if>
+    <if condition='isDefined("SER_EAPM_NORMALIZED_DATA_CONSUMER_LOG_LEVEL")'>
+        <then>
+            <property name="NormalizedDataConsumerLogLevel" value = '${SER_EAPM_NORMALIZED_DATA_CONSUMER_LOG_LEVEL}'/>
+        </then>
+        <else>
+            <property name="NormalizedDataConsumerLogLevel" value = "INFO"/>
+        </else>
+    </if>
+    <logger name="com.ge.apm.strategy.service.kafka.event.NormalizedDataConfigurationConsumer" level="${NormalizedDataConsumerLogLevel}" />
+</configuration>
