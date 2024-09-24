@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: eclipsebatchtest
+  datasource:
+    url: jdbc:postgresql://${SER_EAPM_STRATEGY_SERVICE_DB_HOST:localhost}:${SER_EAPM_STRATEGY_SERVICE_DB_PORT:5432}/${SER_EAPM_STRATEGY_SERVICE_DB_NAME:strategy}?currentShema=${SER_EAPM_STRATEGY_SERVICE_DB_SCHEMA:public}
+    username: ${SER_EAPM_STRATEGY_SERVICE_DB_USER:postgres}
+    password: ${SER_EAPM_STRATEGY_SERVICE_DB_PASSW:postgres}
+    driverClassName: org.postgresql.Driver
+  jpa:
+    properties:
+      eclipselink:
+        ddl-generation: none
+        show-sql: true
+  sql:
+    init:
+      platform: postgres
+
+logging:
+  level:
+    io.github.vcvitaly.eclipsebatchtest: DEBUG
